@@ -2,15 +2,12 @@ FROM golang:1.20
 
 WORKDIR /app
 
-COPY go.mod ./
-COPY go.sum ./
+COPY . /app
 
-RUN go mod download
-
-COPY *.go ./
-
-RUN go build -o /docker-gs-ping
+#RUN go mod tidy
+RUN go build -o test main.go  
 
 EXPOSE 8080
 
-CMD [ "/docker-gs-ping" ]
+RUN ls
+CMD ["./test"]
